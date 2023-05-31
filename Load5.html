@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <style> 
+        body 
+        { 
+            font-family: Arial, Helvetica, sans-serif, sans-serif; 
+            color: #f00606; 
+            background-color: #740606; 
+            padding: 20px; 
+        } 
+ 
+        h1
+        { 
+            text-align: center; 
+            font-size: 2em; 
+            text-shadow: 3px 3px 3px #aaa; 
+        } 
+ 
+        img 
+        { 
+            width: 700px; 
+            height: 550px; 
+            display: block; 
+            margin: 0 auto; 
+        } 
+ 
+        input[type=button]:hover
+        { 
+            background-color: #ddd; 
+        } 
+ 
+        .bordered
+        { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin: 10px 0; 
+        } 
+    </style> 
+    <title>Резюме</title> 
+</head> 
+<body> 
+    <h1>Наше резюме</h1> 
+    <img src="https://avatars.dzeninfra.ru/get-zen_doc/5286518/pub_62c14d28ed0a440ad2e5c588_62c14deb8891784cf07dec46/scale_1200" alt="Фото"> 
+    <div id="name" class="bordered">Имя: <span id="FirstName">Феликс</span></div> 
+    <div id="surname" class="bordered">Фамилия: <span id="LastName">Дзержинский</span></div> 
+    <div id="age" class="bordered">Возраст: <span id="Age">35</span></div>
+    <div class="bordered">
+        Резюме заполнено!: <span id="Rezume">
+            НКВД ГОРТИТЬСЯ ВАМИ!
+        </span>
+    </div>
+ 
+    <div class="checkbox"><label><input type="checkbox" id="checkbox"> Вы согласны с обработкой ваших данных</label></div>
+    <input type="text" id="newLastName" placeholder="Новая фамилия"> 
+    <input type="text" id="newFirstName" placeholder="Новае имя"> 
+    <input type="text" id="newAge" placeholder="Новый возраст"> 
+    <input type="button" value="Изменить фамилию" onclick="changeLastName()">
+    <input type="button" value="Изменить имя" onclick="changeFirstName()"> 
+    <input type="button" value="Изменить возраст" onclick="changeAge()"> 
+    <input type="button" value="Изменить цвет фона" onclick="changeBgColor()"> 
+ 
+    <script> 
+        function changeLastName()
+         { 
+            var newLastName = document.getElementById('newLastName').value; 
+            if (newLastName) 
+            { 
+                document.getElementById('LastName').textContent = newLastName; 
+            } 
+        }
+        function changeFirstName()
+         { 
+            var newFirstName = document.getElementById('newFirstName').value; 
+            if (newFirstName) 
+            { 
+                document.getElementById('FirstName').textContent = newFirstName; 
+            } 
+        }
+        function changeAge()
+         { 
+            var newAge = document.getElementById('newAge').value; 
+            if (newAge) 
+            { 
+                document.getElementById('Age').textContent = newAge; 
+            } 
+        }   
+ 
+        function changeBgColor() 
+        { 
+            var randomColor = '#' + Math.floor(Math.random() * 100000000).toString(16); 
+            document.body.style.backgroundColor = randomColor; 
+        } 
+
+        function fillForm() 
+        {
+            var newFirstName = document.getElementById('newFirstName').value;
+            var newAge = document.getElementById('newAge').value;
+            var checkbox = document.getElementById('checkbox').checked;
+
+            if (!newFirstName.match(/^[a-zA-Zà-ÿÀ-ß]+$/)) {
+                alert('Неправильный ввод имени!');
+                return;
+            }
+
+            if (!newAge.match(/^[0-9]+$/) || newAge <= 0) {
+                alert('Неправильный ввод возраста!');
+                return;
+            }
+
+            if (!checkbox)
+            {
+                alert('Íåîáõîäèìî ñîãëàñèòüñÿ ñ óñëîâèÿìè');
+                return;
+            }
+
+    </script> 
+</body> 
+</html>
