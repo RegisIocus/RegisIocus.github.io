@@ -19,8 +19,8 @@
  
         img 
         { 
-            width: 700px; 
-            height: 550px; 
+            width: 600px; 
+            height: 450px; 
             display: block; 
             margin: 0 auto; 
         } 
@@ -36,6 +36,16 @@
             padding: 15px; 
             margin: 10px 0; 
         } 
+        #success
+         { 
+            display: none; 
+            color: rgb(223, 23, 23); 
+            margin-top: 20px; 
+        } 
+        .checkbox
+        { 
+            margin: 10px 0; 
+        } 
     </style> 
     <title>Резюме</title> 
 </head> 
@@ -45,8 +55,8 @@
     <div id="name" class="bordered">Имя: <span id="FirstName">Феликс</span></div> 
     <div id="surname" class="bordered">Фамилия: <span id="LastName">Дзержинский</span></div> 
     <div id="age" class="bordered">Возраст: <span id="Age">35</span></div>
+    <div id="sex" class="bordered">Пол: <span id="Sex">Мужчина из мужчин!</span></div>
     <div class="bordered">
-        Резюме заполнено!: <span id="Rezume">
             НКВД ГОРТИТЬСЯ ВАМИ!
         </span>
     </div>
@@ -54,66 +64,59 @@
     <div class="checkbox"><label><input type="checkbox" id="checkbox"> Вы согласны с обработкой ваших данных</label></div>
     <input type="text" id="newLastName" placeholder="Новая фамилия"> 
     <input type="text" id="newFirstName" placeholder="Новае имя"> 
-    <input type="text" id="newAge" placeholder="Новый возраст"> 
-    <input type="button" value="Изменить фамилию" onclick="changeLastName()">
-    <input type="button" value="Изменить имя" onclick="changeFirstName()"> 
-    <input type="button" value="Изменить возраст" onclick="changeAge()"> 
+    <input type="text" id="newAge" placeholder="Новый возраст">
+    <input type="text" id="newSex" placeholder="Новый пол">  
+    <textarea id="text" placeholder="Ваш комментарий"></textarea> 
+    <input type="button" value="Заполнить анкету" onclick="FillForm()"> 
     <input type="button" value="Изменить цвет фона" onclick="changeBgColor()"> 
+    <div id="success">Резюме заполнено!</div> 
  
     <script> 
-        function changeLastName()
-         { 
-            var newLastName = document.getElementById('newLastName').value; 
-            if (newLastName) 
-            { 
-                document.getElementById('LastName').textContent = newLastName; 
-            } 
-        }
-        function changeFirstName()
-         { 
-            var newFirstName = document.getElementById('newFirstName').value; 
-            if (newFirstName) 
-            { 
-                document.getElementById('FirstName').textContent = newFirstName; 
-            } 
-        }
-        function changeAge()
-         { 
-            var newAge = document.getElementById('newAge').value; 
-            if (newAge) 
-            { 
-                document.getElementById('Age').textContent = newAge; 
-            } 
-        }   
- 
         function changeBgColor() 
         { 
             var randomColor = '#' + Math.floor(Math.random() * 100000000).toString(16); 
             document.body.style.backgroundColor = randomColor; 
         } 
 
-        function fillForm() 
+        function FillForm() 
         {
-            var newFirstName = document.getElementById('newFirstName').value;
+            var newFirstName = document.getElementById('newFirstName').value; 
+            var newLastName = document.getElementById('newLastName').value; 
             var newAge = document.getElementById('newAge').value;
-            var checkbox = document.getElementById('checkbox').checked;
+            var newSex = document.getElementById('newSex').value; 
+            var checkbox = document.getElementById('checkbox').checked; 
 
-            if (!newFirstName.match(/^[a-zA-Zà-ÿÀ-ß]+$/)) {
-                alert('Неправильный ввод имени!');
-                return;
-            }
-
-            if (!newAge.match(/^[0-9]+$/) || newAge <= 0) {
-                alert('Неправильный ввод возраста!');
-                return;
-            }
-
-            if (!checkbox)
+            if (!newAge.match(/^[0-9]+$/) || newAge <= 0)
             {
-                alert('Íåîáõîäèìî ñîãëàñèòüñÿ ñ óñëîâèÿìè');
+                alert('Возраст должен сождержать только цифры!');
                 return;
             }
+            if (!newFirstName.match(/^[a-zA-Zа-яА-Я]+$/))
+            { 
+                alert('Имя должно содержать только буквы!'); 
+                return; 
+            }
+            if (!newLastName.match(/^[a-zA-Zа-яА-Я]+$/))
+            { 
+                alert('Фамилия должна содержать только буквы!'); 
+                return; 
+            }
+            if (!newSex.match(/^[a-zA-Zа-яА-Я]+$/))
+            { 
+                alert('НКВД ОСВЕДОМЛЁН О НАЛИЧИИ НА ЗАПАДЕ ЛГБТ, В ЦЕЛЯХ БЕЗОПАСТНОСТИ, УКАЖИТЕ ПРАВИЛЬНЫЕ ДАННЫЕ!'); 
+                return; 
+            }
+            if (!checkbox)
+            { 
+                alert('Необходимо согласиться с условиями!'); 
+                return; 
+            } 
+            document.getElementById('FirstName').textContent = newFirstName;
+            document.getElementById('LastName').textContent = newLastName;  
+            document.getElementById('Age').textContent = newAge; 
+            document.getElementById('Sex').textContent = newSex; 
 
+        }
     </script> 
 </body> 
 </html>
